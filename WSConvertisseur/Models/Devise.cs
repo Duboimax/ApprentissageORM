@@ -11,5 +11,12 @@
         public double Taux { get => taux; set => taux = value; }
 
         public Devise() { }
+
+        public Devise(int id, string nomDevise, double taux)
+        {
+            Id = id;
+            NomDevise = nomDevise;
+            Taux = taux;
+        }
     }
 }
