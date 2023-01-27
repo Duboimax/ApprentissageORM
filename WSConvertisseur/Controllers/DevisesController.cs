@@ -116,5 +116,7 @@ namespace WSConvertisseur.Controllers
             lesDevises.Remove(devise);
             return NoContent();
         }
+
+
     }
 }

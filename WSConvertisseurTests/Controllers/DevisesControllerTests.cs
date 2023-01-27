@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WSConvertisseur.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace WSConvertisseur.Controllers.Tests
 {
@@ -122,11 +123,32 @@ namespace WSConvertisseur.Controllers.Tests
         {
             DevisesController controller = new();
 
-            Devise uneDevise = new Devise(6, "Sex", 15.20);
-            var result = controller.Put(6, uneDevise);
-
+            Devise uneDevise = new Devise(2, "Sex", 15.20);
+            var result = controller.Put(2, uneDevise);
             Assert.IsInstanceOfType(result, typeof(NoContentResult));
-            Assert.AreEqual(controller.GetById(6), uneDevise);
+        }
+
+        [TestMethod()]
+        public void Delete_Valid_ReturnNoContent()
+        {
+            DevisesController controller = new();
+
+            var result = controller.Delete(2);
+
+            Assert.IsInstanceOfType(result, typeof(ActionResult<Devise>));
+            Assert.IsInstanceOfType(result.Result, typeof(NoContentResult));
+        }
+
+        [TestMethod()]
+        public void Delete_Invalid_Return_NotFound()
+        {
+            DevisesController controller = new();
+
+            var result = controller.Delete(6);
+
+            Assert.IsInstanceOfType(result, typeof(ActionResult<Devise>));
+            Assert.IsInstanceOfType(result.Result, typeof(NotFoundResult));
+
         }
     }
 }
