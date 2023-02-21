@@ -33,6 +33,8 @@ public partial class Tp3DevContext : DbContext
             optionsBuilder.UseLoggerFactory(MyLoggerFactory)
                           .EnableSensitiveDataLogging()
                           .UseNpgsql("Server=localhost;port=5432;Database=TP3_Dev; uid=postgres; password=postgres;");
+
+            /*optionsBuilder.UseLazyLoadingProxies();*/
         }
     }
        
